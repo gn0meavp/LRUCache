@@ -2,7 +2,13 @@
 Objective-C Implementation of the LRU Cache.
 http://en.wikipedia.org/wiki/Cache_algorithms
 
-Provide easy access to the most recently used objects by key (used NSDictionary and Linked List inside).
+## Description
+Provide easy access to the most recently used objects by key (used NSDictionary and Linked List inside). 
+
+Automatically remove least recently used objects if the cache is out of space.
+
+## Thread-safe
+Append and receive elements from cache is thread-safe (used dispatch_queue inside).
 
 ## Complexity
 Getting an element: O(1)
