@@ -1,8 +1,15 @@
 # LRUCache
-Objective-C Implementation of the LRU Cache
+Objective-C Implementation of the LRU Cache.
 http://en.wikipedia.org/wiki/Cache_algorithms
 
-Sample of usage:
+Used NSDictionary and Linked List inside.
+
+## Complexity
+Getting an element: O(1)
+
+Adding an element: O(1)
+
+## Sample of usage
 
 ```objectivec
 // initial state of cache with capacity 3
