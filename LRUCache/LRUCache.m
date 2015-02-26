@@ -9,11 +9,14 @@
 #import "LRUCache.h"
 #import "LRUCacheNode.h"
 
+static const char *kLRUCacheQueue = "kLRUCacheQueue";
+
 @interface LRUCache ()
 @property (nonatomic, strong) NSMutableDictionary *dictionary;
 @property (nonatomic, strong) LRUCacheNode *rootNode;
 @property (nonatomic, strong) LRUCacheNode *tailNode;
 @property (nonatomic) NSUInteger size;
+@property (nonatomic, strong) dispatch_queue_t queue;
 @end
 
 @implementation LRUCache
@@ -21,7 +24,7 @@
 - (instancetype)initWithCapacity:(NSUInteger)capacity {
     self = [super init];
     if (self) {
-        [self commonSetup];        
+        [self commonSetup];
         _capacity = capacity;
     }
     return self;
@@ -50,30 +53,53 @@
 
 - (void)commonSetup {
     _dictionary = [NSMutableDictionary dictionary];
+    _queue = dispatch_queue_create(kLRUCacheQueue, 0);
 }
+
+#pragma mark - set object / get object methods
 
 - (void)setObject:(id)object forKey:(id<NSCopying>)key {
-
+    
     NSAssert(object != nil, @"LRUCache cannot store nil object!");
     
-    LRUCacheNode *node = self.dictionary[key];
-    if (node == nil) {
-        node = [LRUCacheNode nodeWithValue:object key:key];
-        self.dictionary[key] = node;
-        self.size++;
+    dispatch_barrier_async(self.queue, ^{
+        LRUCacheNode *node = self.dictionary[key];
+        if (node == nil) {
+            node = [LRUCacheNode nodeWithValue:object key:key];
+            self.dictionary[key] = node;
+            self.size++;
+            
+            if (self.tailNode == nil) {
+                self.tailNode = node;
+            }
+            if (self.rootNode == nil) {
+                self.rootNode = node;
+            }
+        }
         
-        if (self.tailNode == nil) {
-            self.tailNode = node;
-        }
-        if (self.rootNode == nil) {
-            self.rootNode = node;
-        }
-    }
-    
-    [self putNodeToTop:node];
-    
-    [self checkSpace];
+        [self putNodeToTop:node];
+        [self checkSpace];
+        
+    });
 }
+
+
+- (id)objectForKey:(id<NSCopying>)key {
+    __block LRUCacheNode *node = nil;
+    
+    dispatch_sync(self.queue, ^{
+        node = self.dictionary[key];
+        
+        if (node) {
+            [self putNodeToTop:node];
+        }
+        
+    });
+    
+    return node.value;
+}
+
+#pragma mark - helper methods
 
 - (void)putNodeToTop:(LRUCacheNode *)node {
     
@@ -100,14 +126,6 @@
         self.tailNode.next = nil;
         self.size--;
     }
-}
-
-- (id)objectForKey:(id<NSCopying>)key {
-    LRUCacheNode *node = self.dictionary[key];
-    if (node) {
-        [self putNodeToTop:node];
-    }
-    return node.value;
 }
 
 @end
