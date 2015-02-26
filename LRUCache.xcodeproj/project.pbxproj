@@ -1,0 +1,381 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C6801AA81A9F1B16006C3E41 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C6801AA71A9F1B16006C3E41 /* main.m */; };
+		C6801AB01A9F2043006C3E41 /* LRUCacheNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C6801AAF1A9F2043006C3E41 /* LRUCacheNode.m */; };
+		C6801AB31A9F209C006C3E41 /* LRUCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C6801AB21A9F209C006C3E41 /* LRUCache.m */; };
+		C6E4C3A51A9F6934006C2C35 /* LRUCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E4C3A41A9F6934006C2C35 /* LRUCacheTests.m */; };
+		C6E4C3A71A9F6940006C2C35 /* LRUCacheNodeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C6E4C3A61A9F6940006C2C35 /* LRUCacheNodeTests.m */; };
+		C6E4C3A81A9F6982006C2C35 /* LRUCacheNode.m in Sources */ = {isa = PBXBuildFile; fileRef = C6801AAF1A9F2043006C3E41 /* LRUCacheNode.m */; };
+		C6E4C3A91A9F6982006C2C35 /* LRUCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C6801AB21A9F209C006C3E41 /* LRUCache.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C6801AA21A9F1B16006C3E41 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		C6801AA41A9F1B16006C3E41 /* LRUCache */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LRUCache; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6801AA71A9F1B16006C3E41 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C6801AAE1A9F2043006C3E41 /* LRUCacheNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRUCacheNode.h; sourceTree = "<group>"; };
+		C6801AAF1A9F2043006C3E41 /* LRUCacheNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRUCacheNode.m; sourceTree = "<group>"; };
+		C6801AB11A9F209C006C3E41 /* LRUCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LRUCache.h; sourceTree = "<group>"; };
+		C6801AB21A9F209C006C3E41 /* LRUCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRUCache.m; sourceTree = "<group>"; };
+		C6801AEA1A9F683D006C3E41 /* LRUCacheTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LRUCacheTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6801AED1A9F683D006C3E41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6E4C3A41A9F6934006C2C35 /* LRUCacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRUCacheTests.m; sourceTree = "<group>"; };
+		C6E4C3A61A9F6940006C2C35 /* LRUCacheNodeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LRUCacheNodeTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C6801AA11A9F1B16006C3E41 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6801AE71A9F683D006C3E41 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C6801A9B1A9F1B16006C3E41 = {
+			isa = PBXGroup;
+			children = (
+				C6801AA61A9F1B16006C3E41 /* LRUCache */,
+				C6801AEB1A9F683D006C3E41 /* LRUCacheTests */,
+				C6801AA51A9F1B16006C3E41 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C6801AA51A9F1B16006C3E41 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C6801AA41A9F1B16006C3E41 /* LRUCache */,
+				C6801AEA1A9F683D006C3E41 /* LRUCacheTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C6801AA61A9F1B16006C3E41 /* LRUCache */ = {
+			isa = PBXGroup;
+			children = (
+				C6801AA71A9F1B16006C3E41 /* main.m */,
+				C6801AAE1A9F2043006C3E41 /* LRUCacheNode.h */,
+				C6801AAF1A9F2043006C3E41 /* LRUCacheNode.m */,
+				C6801AB11A9F209C006C3E41 /* LRUCache.h */,
+				C6801AB21A9F209C006C3E41 /* LRUCache.m */,
+			);
+			path = LRUCache;
+			sourceTree = "<group>";
+		};
+		C6801AEB1A9F683D006C3E41 /* LRUCacheTests */ = {
+			isa = PBXGroup;
+			children = (
+				C6801AEC1A9F683D006C3E41 /* Supporting Files */,
+				C6E4C3A41A9F6934006C2C35 /* LRUCacheTests.m */,
+				C6E4C3A61A9F6940006C2C35 /* LRUCacheNodeTests.m */,
+			);
+			path = LRUCacheTests;
+			sourceTree = "<group>";
+		};
+		C6801AEC1A9F683D006C3E41 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C6801AED1A9F683D006C3E41 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C6801AA31A9F1B16006C3E41 /* LRUCache */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C6801AAB1A9F1B16006C3E41 /* Build configuration list for PBXNativeTarget "LRUCache" */;
+			buildPhases = (
+				C6801AA01A9F1B16006C3E41 /* Sources */,
+				C6801AA11A9F1B16006C3E41 /* Frameworks */,
+				C6801AA21A9F1B16006C3E41 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LRUCache;
+			productName = LRUCache;
+			productReference = C6801AA41A9F1B16006C3E41 /* LRUCache */;
+			productType = "com.apple.product-type.tool";
+		};
+		C6801AE91A9F683D006C3E41 /* LRUCacheTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C6801AF21A9F683D006C3E41 /* Build configuration list for PBXNativeTarget "LRUCacheTests" */;
+			buildPhases = (
+				C6801AE61A9F683D006C3E41 /* Sources */,
+				C6801AE71A9F683D006C3E41 /* Frameworks */,
+				C6801AE81A9F683D006C3E41 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LRUCacheTests;
+			productName = LRUCacheTests;
+			productReference = C6801AEA1A9F683D006C3E41 /* LRUCacheTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C6801A9C1A9F1B16006C3E41 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0630;
+				ORGANIZATIONNAME = TestOrg;
+				TargetAttributes = {
+					C6801AA31A9F1B16006C3E41 = {
+						CreatedOnToolsVersion = 6.3;
+					};
+					C6801AE91A9F683D006C3E41 = {
+						CreatedOnToolsVersion = 6.3;
+					};
+				};
+			};
+			buildConfigurationList = C6801A9F1A9F1B16006C3E41 /* Build configuration list for PBXProject "LRUCache" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C6801A9B1A9F1B16006C3E41;
+			productRefGroup = C6801AA51A9F1B16006C3E41 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C6801AA31A9F1B16006C3E41 /* LRUCache */,
+				C6801AE91A9F683D006C3E41 /* LRUCacheTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C6801AE81A9F683D006C3E41 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C6801AA01A9F1B16006C3E41 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6801AB01A9F2043006C3E41 /* LRUCacheNode.m in Sources */,
+				C6801AB31A9F209C006C3E41 /* LRUCache.m in Sources */,
+				C6801AA81A9F1B16006C3E41 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C6801AE61A9F683D006C3E41 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6E4C3A91A9F6982006C2C35 /* LRUCache.m in Sources */,
+				C6E4C3A71A9F6940006C2C35 /* LRUCacheNodeTests.m in Sources */,
+				C6E4C3A51A9F6934006C2C35 /* LRUCacheTests.m in Sources */,
+				C6E4C3A81A9F6982006C2C35 /* LRUCacheNode.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C6801AA91A9F1B16006C3E41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		C6801AAA1A9F1B16006C3E41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		C6801AAC1A9F1B16006C3E41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LRUCache/LRUCache-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C6801AAD1A9F1B16006C3E41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "LRUCache/LRUCache-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		C6801AF01A9F683D006C3E41 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LRUCacheTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C6801AF11A9F683D006C3E41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = LRUCacheTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C6801A9F1A9F1B16006C3E41 /* Build configuration list for PBXProject "LRUCache" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6801AA91A9F1B16006C3E41 /* Debug */,
+				C6801AAA1A9F1B16006C3E41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C6801AAB1A9F1B16006C3E41 /* Build configuration list for PBXNativeTarget "LRUCache" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6801AAC1A9F1B16006C3E41 /* Debug */,
+				C6801AAD1A9F1B16006C3E41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C6801AF21A9F683D006C3E41 /* Build configuration list for PBXNativeTarget "LRUCacheTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C6801AF01A9F683D006C3E41 /* Debug */,
+				C6801AF11A9F683D006C3E41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C6801A9C1A9F1B16006C3E41 /* Project object */;
+}
