@@ -2,7 +2,7 @@
 Objective-C Implementation of the LRU Cache.
 http://en.wikipedia.org/wiki/Cache_algorithms
 
-Used NSDictionary and Linked List inside.
+Provide easy access to the most recently used objects by key (used NSDictionary and Linked List inside).
 
 ## Complexity
 Getting an element: O(1)
@@ -40,3 +40,7 @@ NSLog(@"%@", [cache objectForKey:@"2"]);
 //      5,2,4       (3 removed as least recently used)
 [cache setObject:@"5" forKey:@"5"];
 ```
+
+## NSCoding
+
+Supports NSCoding protocol, so the cache can be archived/unarchived with all stored values (which also should support NSCoding protocol in that way).
