@@ -14,7 +14,7 @@
 @property (nonatomic, strong) LRUCache *cache;
 @end
 
-@interface TestClass : NSObject
+@interface TestClass : NSObject <NSCoding>
 @property (nonatomic, strong) NSString *value;
 + (instancetype)objectWithValue:(NSString *)value;
 @end
@@ -36,53 +36,33 @@
 
 - (void)testCacheShouldStoreValue {
     
-    TestClass *obj1 = [TestClass objectWithValue:@"1"];
-    NSString *key1 = @"a";
-    
-    [self.cache setObject:obj1 forKey:key1];
-    XCTAssert([[self.cache objectForKey:key1] isEqual:obj1], @"cache should store value");
+    [self.cache setObject:[self testObj1] forKey:[self key1]];
+    XCTAssert([[self.cache objectForKey:[self key1]] isEqual:[self testObj1]], @"cache should store value");
 }
 
 - (void)testCacheShouldStoreMultipleValues {
-    TestClass *obj1 = [TestClass objectWithValue:@"1"];
-    NSString *key1 = @"a";
-
-    TestClass *obj2 = [TestClass objectWithValue:@"2"];
-    NSString *key2 = @"b";
-
-    TestClass *obj3 = [TestClass objectWithValue:@"3"];
-    NSString *key3 = @"c";
     
-    [self.cache setObject:obj1 forKey:key1];
-    [self.cache setObject:obj2 forKey:key2];
-    [self.cache setObject:obj3 forKey:key3];
+    [self.cache setObject:[self testObj1] forKey:[self key1]];
+    [self.cache setObject:[self testObj2] forKey:[self key2]];
+    [self.cache setObject:[self testObj3] forKey:[self key3]];
     
-    XCTAssert([[self.cache objectForKey:key1] isEqual:obj1] &&
-              [[self.cache objectForKey:key2] isEqual:obj2] &&
-              [[self.cache objectForKey:key3] isEqual:obj3], @"cache should store multiple values");
+    XCTAssert([[self.cache objectForKey:[self key1]] isEqual:[self testObj1]] &&
+              [[self.cache objectForKey:[self key2]] isEqual:[self testObj2]] &&
+              [[self.cache objectForKey:[self key3]] isEqual:[self testObj3]], @"cache should store multiple values");
 }
 
 - (void)testCacheShouldStoreLastValues {
     
     self.cache = [[LRUCache alloc] initWithCapacity:2];
     
-    TestClass *obj1 = [TestClass objectWithValue:@"1"];
-    NSString *key1 = @"a";
+    [self.cache setObject:[self testObj1] forKey:[self key1]];
+    [self.cache setObject:[self testObj2] forKey:[self key2]];
+    [self.cache setObject:[self testObj3] forKey:[self key3]];
     
-    TestClass *obj2 = [TestClass objectWithValue:@"2"];
-    NSString *key2 = @"b";
-    
-    TestClass *obj3 = [TestClass objectWithValue:@"3"];
-    NSString *key3 = @"c";
-    
-    [self.cache setObject:obj1 forKey:key1];
-    [self.cache setObject:obj2 forKey:key2];
-    [self.cache setObject:obj3 forKey:key3];
-    
-    XCTAssert([[self.cache objectForKey:key2] isEqual:obj2] &&
-              [[self.cache objectForKey:key3] isEqual:obj3], @"cache should store last values");
+    XCTAssert([[self.cache objectForKey:[self key2]] isEqual:[self testObj2]] &&
+              [[self.cache objectForKey:[self key3]] isEqual:[self testObj3]], @"cache should store last values");
  
-    XCTAssertNil([self.cache objectForKey:key1], @"cache should not store value which did not used recently");
+    XCTAssertNil([self.cache objectForKey:[self key1]], @"cache should not store value which did not used recently");
     
 }
 
@@ -90,20 +70,11 @@
     
     self.cache = [[LRUCache alloc] initWithCapacity:2];
     
-    TestClass *obj1 = [TestClass objectWithValue:@"1"];
-    NSString *key1 = @"a";
-    
-    TestClass *obj2 = [TestClass objectWithValue:@"2"];
-    NSString *key2 = @"b";
-    
-    TestClass *obj3 = [TestClass objectWithValue:@"3"];
-    NSString *key3 = @"c";
-    
-    [self.cache setObject:obj1 forKey:key1];
-    [self.cache setObject:obj2 forKey:key2];
-    [self.cache setObject:obj3 forKey:key3];
+    [self.cache setObject:[self testObj1] forKey:[self key1]];
+    [self.cache setObject:[self testObj2] forKey:[self key2]];
+    [self.cache setObject:[self testObj3] forKey:[self key3]];
 
-    XCTAssertNil([self.cache objectForKey:key1], @"cache should not store value which did not used recently");
+    XCTAssertNil([self.cache objectForKey:[self key1]], @"cache should not store value which did not used recently");
     
 }
 
@@ -111,88 +82,60 @@
     
     self.cache = [[LRUCache alloc] initWithCapacity:2];
     
-    TestClass *obj1 = [TestClass objectWithValue:@"1"];
-    NSString *key1 = @"a";
+    [self.cache setObject:[self testObj1] forKey:[self key1]];
+    [self.cache setObject:[self testObj2] forKey:[self key2]];
     
-    TestClass *obj2 = [TestClass objectWithValue:@"2"];
-    NSString *key2 = @"b";
+    [self.cache objectForKey:[self key1]];
     
-    TestClass *obj3 = [TestClass objectWithValue:@"3"];
-    NSString *key3 = @"c";
+    [self.cache setObject:[self testObj3] forKey:[self key3]];
     
-    [self.cache setObject:obj1 forKey:key1];
-    [self.cache setObject:obj2 forKey:key2];
-    
-    [self.cache objectForKey:key1];
-    
-    [self.cache setObject:obj3 forKey:key3];
-    
-    XCTAssert([[self.cache objectForKey:key1] isEqual:obj1], @"cache should store recently used value even if it was appended earlier");
+    XCTAssert([[self.cache objectForKey:[self key1]] isEqual:[self testObj1]], @"cache should store recently used value even if it was appended earlier");
     
 }
 
 - (void)testCacheShouldNotStoreValueThatWasNotUsedRecentlyEvenIfItWasAppendedLater {
     self.cache = [[LRUCache alloc] initWithCapacity:2];
     
-    TestClass *obj1 = [TestClass objectWithValue:@"1"];
-    NSString *key1 = @"a";
+    [self.cache setObject:[self testObj1] forKey:[self key1]];
+    [self.cache setObject:[self testObj2] forKey:[self key2]];
     
-    TestClass *obj2 = [TestClass objectWithValue:@"2"];
-    NSString *key2 = @"b";
+    [self.cache objectForKey:[self key1]];
     
-    TestClass *obj3 = [TestClass objectWithValue:@"3"];
-    NSString *key3 = @"c";
+    [self.cache setObject:[self testObj3] forKey:[self key3]];
     
-    [self.cache setObject:obj1 forKey:key1];
-    [self.cache setObject:obj2 forKey:key2];
-    
-    [self.cache objectForKey:key1];
-    
-    [self.cache setObject:obj3 forKey:key3];
-    
-    XCTAssertFalse([self.cache objectForKey:key2], @"cache should not store value which did not used recently, even if it was appended later");
+    XCTAssertFalse([self.cache objectForKey:[self key2]], @"cache should not store value which did not used recently, even if it was appended later");
     
 }
 
 - (void)testCacheShouldStoreTheSameValueTwiceWithDifferentKeys {
-    TestClass *obj1 = [TestClass objectWithValue:@"1"];
-    NSString *key1 = @"a";
 
-    NSString *key2 = @"b";
-
-    [self.cache setObject:obj1 forKey:key1];
-    [self.cache setObject:obj1 forKey:key2];
+    TestClass *obj1 = [self testObj1];
     
-    XCTAssert([self.cache objectForKey:key1] != nil &&
-              [[self.cache objectForKey:key1] isEqual:[self.cache objectForKey:key2]], @"cache should store the same value with different keys");
+    [self.cache setObject:obj1 forKey:[self key1]];
+    [self.cache setObject:obj1 forKey:[self key2]];
+    
+    XCTAssert([self.cache objectForKey:[self key1]] != nil &&
+              [[self.cache objectForKey:[self key1]] isEqual:[self.cache objectForKey:[self key2]]], @"cache should store the same value with different keys");
     
 }
 
 - (void)testCacheShouldNotStoreNilValue {
-    NSString *key1 = @"a";
+    XCTAssertThrows([self.cache setObject:nil forKey:[self key1]], @"should throw exception for nil value");
     
-    XCTAssertThrows([self.cache setObject:nil forKey:key1], @"should throw exception for nil value");
-    
-    XCTAssertNil([self.cache objectForKey:key1], @"cache should not store nil value");
+    XCTAssertNil([self.cache objectForKey:[self key1]], @"cache should not store nil value");
 }
 
 - (void)testCacheShouldNotReplaceValuesWithNilValue {
     self.cache = [[LRUCache alloc] initWithCapacity:2];
     
-    TestClass *obj1 = [TestClass objectWithValue:@"1"];
-    NSString *key1 = @"a";
-    
-    TestClass *obj2 = [TestClass objectWithValue:@"2"];
-    NSString *key2 = @"b";
-    
     TestClass *obj3 = nil;
-    NSString *key3 = @"c";
     
-    [self.cache setObject:obj1 forKey:key1];
-    [self.cache setObject:obj2 forKey:key2];
+    [self.cache setObject:[self testObj1] forKey:[self key1]];
+    [self.cache setObject:[self testObj2] forKey:[self key2]];
     
-    XCTAssertThrows([self.cache setObject:obj3 forKey:key3], @"should throw exception for nil value");
-    XCTAssert([[self.cache objectForKey:key1] isEqual:obj1] && [[self.cache objectForKey:key2] isEqual:obj2],  @"cache should not replace values with nil value");
+    XCTAssertThrows([self.cache setObject:obj3 forKey:[self key3]], @"should throw exception for nil value");
+    XCTAssert([[self.cache objectForKey:[self key1]] isEqual:[self testObj1]] &&
+              [[self.cache objectForKey:[self key2]] isEqual:[self testObj2]],  @"cache should not replace values with nil value");
     
 }
 
@@ -255,6 +198,45 @@
     }];
 }
 
+- (void)testCacheShouldBeArchivedWithValues {
+    [self.cache setObject:[self testObj1] forKey:[self key1]];
+    [self.cache setObject:[self testObj2] forKey:[self key2]];
+    [self.cache setObject:[self testObj3] forKey:[self key3]];
+    
+    NSData *archivedCache = [NSKeyedArchiver archivedDataWithRootObject:self.cache];
+    
+    LRUCache *cache2 = [NSKeyedUnarchiver unarchiveObjectWithData:archivedCache];
+    
+    XCTAssert([[cache2 objectForKey:[self key1]] isEqual:[self testObj1]] &&
+              [[cache2 objectForKey:[self key2]] isEqual:[self testObj2]] &&
+              [[cache2 objectForKey:[self key3]] isEqual:[self testObj3]], @"Cache should contains objects equal to original after archive/unarchive");
+}
+
+#pragma mark - helper methods
+
+- (TestClass *)testObj1 {
+    return [TestClass objectWithValue:@"1"];
+}
+
+- (TestClass *)testObj2 {
+    return [TestClass objectWithValue:@"2"];
+}
+
+- (TestClass *)testObj3 {
+    return [TestClass objectWithValue:@"3"];
+}
+
+- (NSString *)key1 {
+    return @"key1";
+}
+
+- (NSString *)key2 {
+    return @"key2";
+}
+
+- (NSString *)key3 {
+    return @"key3";
+}
 
 @end
 
@@ -273,4 +255,15 @@
     return [self.value isEqualToString:object.value];
 }
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    if (self) {
+        _value = [aDecoder decodeObjectForKey:@"value"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.value forKey:@"value"];
+}
 @end
