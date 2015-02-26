@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LRUCacheNode : NSObject
+@interface LRUCacheNode : NSObject<NSCoding>
 
 @property (nonatomic, strong, readonly) id value;
 @property (nonatomic, strong, readonly) id<NSCopying> key;

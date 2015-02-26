@@ -32,6 +32,24 @@
     return [[LRUCacheNode alloc] initWithValue:value key:key];
 }
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    if (self) {
+        _value = [aDecoder decodeObjectForKey:@"kLRUCacheNodeValueKey"];
+        _key = [aDecoder decodeObjectForKey:@"kLRUCacheNodeKey"];
+        _next = [aDecoder decodeObjectForKey:@"kLRUCacheNodeNext"];
+        _prev = [aDecoder decodeObjectForKey:@"kLRUCacheNodePrev"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeObject:self.value forKey:@"kLRUCacheNodeValueKey"];
+    [aCoder encodeObject:self.key forKey:@"kLRUCacheNodeKey"];
+    [aCoder encodeObject:self.next forKey:@"kLRUCacheNodeNext"];
+    [aCoder encodeObject:self.prev forKey:@"kLRUCacheNodePrev"];
+}
+
 - (NSString *)description {
     return [NSString stringWithFormat:@"%@ %@", self.value, self.next];
 }

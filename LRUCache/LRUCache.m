@@ -12,7 +12,7 @@
 @interface LRUCache ()
 @property (nonatomic, strong) NSMutableDictionary *dictionary;
 @property (nonatomic, strong) LRUCacheNode *rootNode;
-@property (nonatomic, strong) LRUCacheNode *tail;
+@property (nonatomic, strong) LRUCacheNode *tailNode;
 @property (nonatomic) NSUInteger size;
 @end
 
@@ -21,10 +21,35 @@
 - (instancetype)initWithCapacity:(NSUInteger)capacity {
     self = [super init];
     if (self) {
+        [self commonSetup];        
         _capacity = capacity;
-        _dictionary = [NSMutableDictionary dictionary];
     }
     return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    self = [super init];
+    if (self) {
+        [self commonSetup];
+        _capacity = [aDecoder decodeIntegerForKey:@"kLRUCacheCapacityCoderKey"];
+        _rootNode = [aDecoder decodeObjectForKey:@"kLRUCacheRootNodeCoderKey"];
+        _tailNode = [aDecoder decodeObjectForKey:@"kLRUCacheTailNodeCoderKey"];
+        _dictionary = [aDecoder decodeObjectForKey:@"kLRUCacheDictionaryCoderKey"];
+        _size = [aDecoder decodeIntegerForKey:@"kLRUCacheSizeCoderKey"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder {
+    [aCoder encodeInteger:self.capacity forKey:@"kLRUCacheCapacityCoderKey"];
+    [aCoder encodeObject:self.rootNode forKey:@"kLRUCacheRootNodeCoderKey"];
+    [aCoder encodeObject:self.rootNode forKey:@"kLRUCacheTailNodeCoderKey"];
+    [aCoder encodeObject:self.dictionary forKey:@"kLRUCacheDictionaryCoderKey"];
+    [aCoder encodeInteger:self.size forKey:@"kLRUCacheSizeCoderKey"];
+}
+
+- (void)commonSetup {
+    _dictionary = [NSMutableDictionary dictionary];
 }
 
 - (void)setObject:(id)object forKey:(id<NSCopying>)key {
@@ -37,8 +62,8 @@
         self.dictionary[key] = node;
         self.size++;
         
-        if (self.tail == nil) {
-            self.tail = node;
+        if (self.tailNode == nil) {
+            self.tailNode = node;
         }
         if (self.rootNode == nil) {
             self.rootNode = node;
@@ -56,8 +81,8 @@
         return;
     }
     
-    if (node == self.tail) {
-        self.tail = self.tail.prev;
+    if (node == self.tailNode) {
+        self.tailNode = self.tailNode.prev;
     }
     
     self.rootNode.prev.next = node.next;
@@ -69,10 +94,10 @@
 
 - (void)checkSpace {
     if (self.size > self.capacity) {
-        LRUCacheNode *nextTail = self.tail.prev;
-        [self.dictionary removeObjectForKey:self.tail.key];
-        self.tail = nextTail;
-        self.tail.next = nil;
+        LRUCacheNode *nextTail = self.tailNode.prev;
+        [self.dictionary removeObjectForKey:self.tailNode.key];
+        self.tailNode = nextTail;
+        self.tailNode.next = nil;
         self.size--;
     }
 }

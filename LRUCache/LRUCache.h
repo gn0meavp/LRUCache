@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface LRUCache : NSObject
+@interface LRUCache : NSObject <NSCoding>
 
 @property (nonatomic, readonly, assign) NSUInteger capacity;
 
