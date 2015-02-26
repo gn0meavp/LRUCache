@@ -9,20 +9,20 @@
 #import <Foundation/Foundation.h>
 #import "LRUCache.h"
 
-// LRU Cache
+// LRU Cache sample
 
-// initial state
-// -,-,-
+// initial state for capacity 3
+//      -,-,-
 // add 1
-// 1,-,-
+//      1,-,-
 // add 2
-// 2,1,-
+//      2,1,-
 // add 3
-// 3,2,1
+//      3,2,1
 // add 4
-// 4,3,2
+//      4,3,2
 // request 2
-// 2,4,3
+//      2,4,3
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
