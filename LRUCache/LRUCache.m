@@ -46,7 +46,7 @@ static const char *kLRUCacheQueue = "kLRUCacheQueue";
 - (void)encodeWithCoder:(NSCoder *)aCoder {
     [aCoder encodeInteger:self.capacity forKey:@"kLRUCacheCapacityCoderKey"];
     [aCoder encodeObject:self.rootNode forKey:@"kLRUCacheRootNodeCoderKey"];
-    [aCoder encodeObject:self.rootNode forKey:@"kLRUCacheTailNodeCoderKey"];
+    [aCoder encodeObject:self.tailNode forKey:@"kLRUCacheTailNodeCoderKey"];
     [aCoder encodeObject:self.dictionary forKey:@"kLRUCacheDictionaryCoderKey"];
     [aCoder encodeInteger:self.size forKey:@"kLRUCacheSizeCoderKey"];
 }
